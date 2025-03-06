@@ -4,6 +4,10 @@ Hacky script to monitor the progress of batch jobs in slack.
 
 ## Setup
 
+Add this to your pyproject
+
+`slack-job-monitor @ git+https://github.com/elvout/slack-job-monitor.git"`
+
 Have your slack user id and slack bot token into `SLACK_USER_ID` and `SLACK_BOT_TOKEN` environment vars.
 
 ## Usage
