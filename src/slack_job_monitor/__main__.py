@@ -5,6 +5,7 @@ import datetime
 import enum
 import getpass
 import itertools
+import math
 import platform
 import subprocess
 import time
@@ -81,6 +82,8 @@ class ProcessMonitor:
 
         for arg in self.args:
             try:
+                job_start = time.time()
+
                 # Continuously update a dictionary because we can't take statistics of
                 # the process once it's terminated.
                 proc_stats: dict[psutil.Process, psutil._common.pcputimes] = {}
@@ -97,7 +100,7 @@ class ProcessMonitor:
                             # its stats.
                             pass
 
-                    time.sleep(1 / 10)
+                    time.sleep(math.log10(time.time() - job_start + 1))
 
                 proc.wait()
                 self.completed += 1
