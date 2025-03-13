@@ -49,10 +49,10 @@ class ProcessMonitor:
         message = "\n".join(
             [
                 f"{self.status.value}",
-                f"{getpass.getuser()}@{platform.node()}:",
+                f"{getpass.getuser()}@{platform.node()}",
                 f"`{' '.join(self.command)}`",
                 message,
-                f"Last updated {datetime.datetime.now().astimezone().isoformat('T')}",
+                f"Last updated {datetime.datetime.now().astimezone().strftime('%a %b %d %I:%M:%S %p %Z')}",
             ]
         )
         self.slack.update_post(message)
@@ -158,7 +158,7 @@ def main() -> None:
         monitor.status = MonitorStatus.CRASHED
         monitor.update_message(monitor.get_stats_str())
 
-    monitor.slack.ping_user()
+    monitor.slack.ping_user(monitor.status.value)
 
 
 if __name__ == "__main__":
