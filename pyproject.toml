@@ -2,23 +2,22 @@
 name = "slack-job-monitor"
 version = "0.1.0"
 description = "Hacky script to monitor the progress of batch jobs in slack."
-authors = [
-    {name = "Elvin Yang",email = "eyy@umich.edu"}
-]
+authors = [{ name = "Elvin Yang", email = "eyy@umich.edu" }]
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
 dependencies = [
-    "psutil (>=7.0.0,<8.0.0)",
-    "loguru (>=0.7.3,<0.8.0)",
-    "slack-sdk (>=3.34.0,<4.0.0)",
-    "mypy (>=1.15.0,<2.0.0)",
-    "human-readable (>=2.0.0,<3.0.0)"
+    "human-readable>=2.0.0",
+    "loguru>=0.7.3",
+    "psutil~=7.0",
+    "slack-sdk~=3.34",
 ]
 
 [project.scripts]
 "slack-job-monitor" = "slack_job_monitor.__main__:main"
 
+[dependency-groups]
+dev = ["mypy>=1.15.0"]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
